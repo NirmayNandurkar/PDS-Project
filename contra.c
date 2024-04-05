@@ -65,7 +65,7 @@ void showStartScreen(SDL_Renderer *renderer)
     return;
   }
 
-  SDL_Rect startRect = {0, 50, 320, 120}; // Adjust the dimensions as per your start screen image size
+  SDL_Rect startRect = {0, 50, 320, 120}; 
   SDL_RenderCopy(renderer, startTexture, NULL, &startRect);
   SDL_RenderPresent(renderer);
 
@@ -89,7 +89,7 @@ void showStartScreen(SDL_Renderer *renderer)
 void showWinScreen(SDL_Renderer *renderer)
 {
   SDL_Texture *winTexture;
-  SDL_Surface *winSurface = IMG_Load("win_screen.png"); // Replace "start_screen.png" with your actual start screen image
+  SDL_Surface *winSurface = IMG_Load("win_screen.png"); 
 
   if (!winSurface)
   {
@@ -106,7 +106,7 @@ void showWinScreen(SDL_Renderer *renderer)
     return;
   }
 
-  SDL_Rect winRect = {0, 0, 320, 240}; // Adjust the dimensions as per your start screen image size
+  SDL_Rect winRect = {0, 0, 320, 240}; 
   SDL_RenderCopy(renderer, winTexture, NULL, &winRect);
   SDL_RenderPresent(renderer);
   const Uint8 *state = SDL_GetKeyboardState(NULL);
@@ -133,7 +133,7 @@ void showWinScreen(SDL_Renderer *renderer)
 void showLossScreen(SDL_Renderer *renderer)
 {
   SDL_Texture *lossTexture;
-  SDL_Surface *lossSurface = IMG_Load("loss_screen.png"); // Replace "start_screen.png" with your actual start screen image
+  SDL_Surface *lossSurface = IMG_Load("loss_screen.png"); 
 
   if (!lossSurface)
   {
@@ -150,7 +150,7 @@ void showLossScreen(SDL_Renderer *renderer)
     return;
   }
 
-  SDL_Rect lossRect = {0, 0, 320, 240}; // Adjust the dimensions as per your start screen image size
+  SDL_Rect lossRect = {0, 0, 320, 240}; 
   SDL_RenderCopy(renderer, lossTexture, NULL, &lossRect);
   SDL_RenderPresent(renderer);
   const Uint8 *state = SDL_GetKeyboardState(NULL);
@@ -224,7 +224,7 @@ void addEnemyBullet(float x, float y, float dx, float dy)
 // Function to render enemy bullets
 void renderEnemyBullets(SDL_Renderer *renderer)
 {
-  SDL_Surface *enemyBulletSurface = IMG_Load("enemy_bullet.png"); // Replace "enemy_bullet.png" with the actual filename of your enemy bullet image
+  SDL_Surface *enemyBulletSurface = IMG_Load("enemy_bullet.png"); 
   if (!enemyBulletSurface)
   {
     printf("Unable to load enemy bullet image: %s\n", IMG_GetError());
@@ -242,7 +242,7 @@ void renderEnemyBullets(SDL_Renderer *renderer)
   {
     if (enemyBullets[i].active)
     {
-      SDL_Rect bulletRect = {(int)enemyBullets[i].x, (int)enemyBullets[i].y, 8, 8}; // Adjust bullet width and height as needed
+      SDL_Rect bulletRect = {(int)enemyBullets[i].x, (int)enemyBullets[i].y, 8, 8}; 
       SDL_RenderCopy(renderer, enemyBulletTexture, NULL, &bulletRect);
     }
   }
@@ -392,10 +392,9 @@ void doRender(SDL_Renderer *renderer, Man *man)
   // SDL_RenderFillRect(renderer, &rect);
   SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 
-  // warrior
 
   SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Blue color
-  SDL_Rect playerHealthBar = {10, 10, (40 - totalDamageman) * 3, 10}; // Adjust size and position as needed
+  SDL_Rect playerHealthBar = {10, 10, (40 - totalDamageman) * 3, 10}; 
   SDL_RenderFillRect(renderer, &playerHealthBar);
 
 
@@ -406,7 +405,7 @@ void doRender(SDL_Renderer *renderer, Man *man)
   // enemy
 
   SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Red color
-  SDL_Rect enemyHealthBar = { 190, 10, (40 - totalDamageenemy) * 3, 10}; // Adjust size and position as needed
+  SDL_Rect enemyHealthBar = { 190, 10, (40 - totalDamageenemy) * 3, 10}; 
   SDL_RenderFillRect(renderer, &enemyHealthBar);
 
   SDL_Rect eSrcRect = {40 * enemy.currentSprite, 0, 40, 50};
@@ -436,14 +435,14 @@ void checkBulletPlayerCollision(Man *man)
   {
     if (enemyBullets[i].active)
     {
-      // Check if the bullet intersects with the player's position
+     
       if (enemyBullets[i].x < man->x + 40 &&
           enemyBullets[i].x + 8 > man->x &&
           enemyBullets[i].y < man->y + 50 &&
           enemyBullets[i].y + 8 > man->y)
       {
         // Reduce player's health
-        totalDamageman += 1; // Adjust damage as needed
+        totalDamageman += 1; 
 
         // Remove the bullet after hitting the player
         enemyBullets[i].active = 0;
@@ -460,7 +459,7 @@ void checkBulletPlayerCollision(Man *man)
           Mix_PlayMusic(death, 1);
           SDL_DestroyTexture(man->sheetTexture);
           man->visibleTime = globalTime;
-          // Perform any other actions for player death, such as showing game over screen, etc.
+         
         }
       }
     }
@@ -488,7 +487,6 @@ void updateLogic(Man *man)
           bullets[i]->y > enemy.y && bullets[i]->y < enemy.y + 50)
       {
         
-         // Adjust damage as needed
 
         // Remove the bullet after hitting the enemy
         removeBullet(i);
@@ -533,7 +531,7 @@ void updateLogic(Man *man)
       }
     }
   }
-  // Generate a random number between -1 and 1 for movement direction
+
   if (enemy.alive == 1)
   {
     // Random movement logic
@@ -565,7 +563,7 @@ void updateLogic(Man *man)
 
     // Jump logic
     if (globalTime % 20 == 0)
-    { // Adjust jump frequency as needed
+    { 
       if (enemy.dy == 0)
       {                 // Only jump if not already jumping
         enemy.dy = -10; // Set the initial jump velocity
@@ -612,7 +610,7 @@ void updateLogic(Man *man)
       enemyShootTimer = 0; // Reset the timer
     }
 
-    // Other enemy behavior updates...
+    
   }
 
   checkBulletPlayerCollision(man);
