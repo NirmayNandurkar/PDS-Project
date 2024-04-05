@@ -45,6 +45,7 @@ Mix_Music *bgm;
 Mix_Music *WinMusic;
 Mix_Music *LossMusic;
 Mix_Music *death;
+
 void showStartScreen(SDL_Renderer *renderer)
 {
   SDL_Texture *startTexture;
