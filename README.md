@@ -58,8 +58,8 @@
     </div>
     <h2 class="heading2">Screenshots</h2>
     <div>
-    <img src="screenshots/title_screen.jpg" alt="Title screen of the game" width="500">
-    <img src="screenshots/game_screen.jpg" alt="Title screen of the game" width="500">
+    <img src="screenshots/title_screen.jpg" alt="Title screen of the game" width="400">
+    <img src="screenshots/game_screen.jpg" alt="Title screen of the game" width="400">
     </div>
 </body>
 </html>
